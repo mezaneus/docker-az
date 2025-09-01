@@ -15,9 +15,9 @@ jobs:
                 creds: ${{secrets.AZURE_CREDENTIALS}}
             - name: ACR login
               run: |
-                az acr login --name mydockeracrredgistry
+                az acr login --name mydockeracrregstry
             - name: Build and push the image
               run: |
                 
-                docker build -t mydockeracrredgistry.azurecr.io/myapp:latest .
-                docker push mydockeracrredgistry.azurecr.io/myapp:latest
+                docker build -t mydockeracrregstry.azurecr.io/myapp:latest .
+                docker push mydockeracrregstry.azurecr.io/myapp:latest
