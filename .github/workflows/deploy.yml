@@ -12,4 +12,12 @@ jobs:
             - name: Azure Login
               uses: azure/login@v2
               with:
-                creds: ${{secrets.AZURE_CREDENTIALS}}    # Service Principal credentials
+                creds: ${{secrets.AZURE_CREDENTIALS}}
+            - name: ACR login
+              run: |
+                az acr login --name mydockeracrredgistry
+            - name: Build and push the image
+              run: |
+                
+                docker build -t mydockeracrredgistry.azurecr.io/myapp:latest .
+                docker push mydockeracrredgistry.azurecr.io/myapp:latest
