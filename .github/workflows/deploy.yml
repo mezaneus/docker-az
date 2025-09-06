@@ -15,7 +15,7 @@ jobs:
                 creds: ${{secrets.AZURE_CREDENTIALS}}
             - name: ACR login
               run: |
-                az acr login --name mydockeracrredgistry
+                az acr login --name mydockeracrregstry
             - name: Build and push the image
               run: |
                 
@@ -25,7 +25,7 @@ jobs:
             - name: 'Deploy to Azure Container Instances'
               uses: 'azure/aci-deploy@v1'
               with:
-                  resource-group: docker
+                  resource-group: class3105
                   dns-name-label: getstartedapp
                   image: mydockeracrredgistry.azurecr.io/myapp:${{ github.sha }}
                   ports: 3000
