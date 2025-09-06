@@ -26,7 +26,7 @@ jobs:
               uses: 'azure/aci-deploy@v1'
               with:
                   resource-group: class3105
-                  dns-name-label: getstartedapp
+                  dns-name-label: getstartedapp1
                   image: mydockeracrregstry.azurecr.io/myapp:${{ github.sha }}
                   ports: 3000
                   cpu: 1
