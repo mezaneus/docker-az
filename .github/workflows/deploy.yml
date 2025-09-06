@@ -19,5 +19,19 @@ jobs:
             - name: Build and push the image
               run: |
                 
-                docker build -t mydockeracrregstry.azurecr.io/myapp:latest .
-                docker push mydockeracrregstry.azurecr.io/myapp:latest
+                docker build -t mydockeracrredgistry.azurecr.io/myapp:${{ github.sha }} .
+                docker push mydockeracrredgistry.azurecr.io/myapp:${{ github.sha }}
+
+            - name: 'Deploy to Azure Container Instances'
+              uses: 'azure/aci-deploy@v1'
+              with:
+                  resource-group: docker
+                  dns-name-label: getstartedapp
+                  image: mydockeracrredgistry.azurecr.io/myapp:${{ github.sha }}
+                  ports: 3000
+                  cpu: 1
+                  memory: 1
+                  registry-username: ${{ secrets.username }}
+                  registry-password: ${{ secrets.password }}
+                  name: helloworld
+                  location: 'eastus'
